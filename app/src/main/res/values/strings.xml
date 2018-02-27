@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Movies</string>
+    <string name="nav_welcome">Welcome!</string>
+    <string name="about">About</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="generic_error">Uh oh, seems like some network issue. Please try again in a short while</string>
+    <string name="network_error">Please check your internet connection!!</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="popular">Popular</string>
+    <string name="rating">Rating</string>
+    <string name="favorite">Favorites</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="movie_poster">Movie Poster</string>
+    <string name="favorite_content_desc">The movie can be marked as favorite on tapping this icon</string>
+    <string name="content_authority">com.udacity.movies.app</string>
+</resources>

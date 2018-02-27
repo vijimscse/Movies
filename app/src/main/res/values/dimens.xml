@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="action_bar_elevation">2dp</dimen>
+    <dimen name="dimen_8">8dp</dimen>
+    <dimen name="dimen_4">4dp</dimen>
+    <dimen name="buttons_font_size">@dimen/body_font_size</dimen>
+    <dimen name="body_font_size">14sp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="header_subtitle_height">100dp</dimen>
+    <dimen name="dp_120">120dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
+    <dimen name="dp_140">140dp</dimen>
+    <dimen name="dimen_12">12dp</dimen>
+    <dimen name="dimen_16_sp">16sp</dimen>
+    <dimen name="progress_thickness">2dp</dimen>
+    <dimen name="profile_image">70dp</dimen>
+    <dimen name="poster_height">190dp</dimen>
+    <dimen name="movie_title_text_size">20sp</dimen>
+    <dimen name="movie_subtitle_text_size">16sp</dimen>
+</resources>

@@ -1,0 +1,82 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorTertiary">@color/textColorPrimary</item>
+        <item name="android:textViewStyle">@style/defaultTextViewStyle</item>
+        <item name="android:editTextStyle">@style/defaultEditTextViewStyle</item>
+        <item name="buttonStyle">@style/defaultButtonStyle</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:fontFamily">helvetica</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorPrimary</item>
+        <item name="actionMenuTextColor">@color/textColorPrimary</item>
+    </style>
+
+    <!-- Default Button Style -->
+    <style name="defaultButtonStyle" parent="android:style/Widget.Button">
+        <item name="android:fontFamily">helvetica</item>
+        <item name="android:background">@color/button_background</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:padding">@dimen/dimen_8</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/buttons_font_size</item>
+    </style>
+
+    <!--Default Alert Dialog-->
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Used for the buttons -->
+        <item name="colorAccent">@color/colorPrimary</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+
+    </style>
+
+    <style name="LoadingDialogTheme" parent="AlertDialogCustom">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+    <!-- Default Text view styles -->
+    <style name="defaultTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">helvetica</item>
+        <item name="android:textSize">@dimen/body_font_size</item>
+    </style>
+
+    <!-- Default Text view styles -->
+    <style name="defaultEditTextViewStyle" parent="android:Widget.EditText">
+        <item name="android:fontFamily">helvetica</item>
+        <item name="android:textSize">@dimen/body_font_size</item>
+        <item name="android:textColorHint">@color/gray</item>
+    </style>
+
+    <!-- Dashboard styles -->
+    <style name="DashboardTab" parent="Base.Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyTabTextAppearance</item>
+        <item name="tabBackground">@color/white</item>
+        <item name="android:background">@color/white</item>
+        <item name="tabTextColor">@color/textColorPrimary</item>
+        <item name="tabSelectedTextColor">@color/colorPrimaryDark</item>
+        <item name="tabIndicatorColor">@color/colorPrimaryDark</item>
+        <item name="tabIndicatorHeight">@dimen/dimen_4</item>
+        <item name="tabMaxWidth">0dp</item>
+        <item name="tabMode">fixed</item>
+        <item name="tabGravity">fill</item>
+    </style>
+
+    <style name="MyTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/body_font_size</item>
+        <item name="android:fontFamily">helvetica</item>
+        <item name="textAllCaps">true</item>
+    </style>
+</resources>

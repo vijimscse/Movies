@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#42BEFF</color>
+    <color name="colorPrimaryDark">#0CABFE</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="textColorPrimary">#5C6275</color>
+    <color name="button_background">@color/colorPrimaryDark</color>
+    <color name="window_background">#FFFFFF</color>
+    <color name="gray">#878DA0</color>
+    <color name="gray_dark">#5C6275</color>
+    <color name="custom_alert_dialog_button_text">#029688</color>
+    <color name="black">#000000</color>
+    <color name="google_background">#DC4C41</color>
+    <color name="tabBackground">#20808080</color>
+
+    <!-- Color code for status -->
+    <color name="status_gray">#E2F3FA</color>
+    <color name="status_gray_dark">#AAC7DD</color>
+    <color name="status_green">#C3EEE4</color>
+    <color name="status_green_dark">#4BCEAF</color>
+    <color name="status_orange">#FFE4B7</color>
+    <color name="status_orange_dark">#FFAD1F</color>
+    <color name="status_red">#FFA6AA</color>
+    <color name="status_red_dark">#FF4E56</color>
+    <color name="transparent_black">#80000000</color>
+</resources>
