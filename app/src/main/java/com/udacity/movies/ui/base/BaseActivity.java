@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.accolite.bsm.dagger.BaseView;
 import com.udacity.movies.R;
 import com.udacity.movies.ui.about.AboutActivity;
 import com.udacity.movies.ui.dashboard.DashboardActivity;
