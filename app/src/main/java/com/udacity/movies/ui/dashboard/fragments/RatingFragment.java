@@ -20,4 +20,8 @@ public class RatingFragment extends MovieListBaseFragment {
 
         fetchMovieList(SortType.TOP_RATED);
     }
+
+    public void updateUI() {
+        updateMovieListFavMovies();
+    }
 }

@@ -195,8 +195,11 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
         return movieList;
     }
 
-    private void updateMovieListFavMovies() {
+    protected void updateMovieListFavMovies() {
         if (getActivity() != null) {
+            for (Movie movie : mMovieList) {
+                movie.setmIsFavorite(false);
+            }
             List<Movie> movieList = getCachedFavMovieList();
 
             if (movieList != null && !movieList.isEmpty()) {
@@ -208,6 +211,7 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
                     }
                 }
             }
+            mMovieListAdapter.notifyDataSetChanged();
         }
     }
 }

@@ -79,8 +79,15 @@ public class DashboardPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     public void updateUI() {
+        if (mPopularFragment != null) {
+            mPopularFragment.updateUI();
+        }
+        if (mRatingFragment != null) {
+            mRatingFragment.updateUI();
+        }
         if (mFavoriteFragment != null) {
             mFavoriteFragment.updateUI();
         }
+
     }
 }

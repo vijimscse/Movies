@@ -21,4 +21,8 @@ public class PopularFragment extends MovieListBaseFragment {
 
         fetchMovieList(SortType.POPULAR);
     }
+
+    public void updateUI() {
+        updateMovieListFavMovies();
+    }
 }
