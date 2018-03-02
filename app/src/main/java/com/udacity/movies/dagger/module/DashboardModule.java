@@ -1,10 +1,8 @@
 package com.udacity.movies.dagger.module;
 
-import com.udacity.movies.ui.dashboard.DashboardPresenter;
+import com.udacity.movies.ui.dashboard.MovieListPresenter;
 import com.udacity.movies.ui.dashboard.DashboardView;
 import com.udacity.movies.ui.dashboard.fragments.MovieListBaseFragment;
-import com.udacity.movies.ui.dashboard.fragments.MovieListFragment;
-import com.udacity.movies.ui.dashboard.fragments.PopularFragment;
 
 import dagger.Module;
 import dagger.Provides;
@@ -36,7 +34,7 @@ public class DashboardModule {
 
     @Provides
     @ActivityScope
-    DashboardPresenter providePresenter(MovieListBaseFragment movieListFragment, DashboardView view) {
-        return new DashboardPresenter(view, mMovieListFragment);
+    MovieListPresenter providePresenter(MovieListBaseFragment movieListFragment, DashboardView view) {
+        return new MovieListPresenter(view, movieListFragment);
     }
 }

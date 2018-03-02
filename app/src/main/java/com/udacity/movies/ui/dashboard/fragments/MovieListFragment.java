@@ -43,6 +43,22 @@ public class MovieListFragment extends BaseFragment {
 
         mDashboardPagerAdapter = new DashboardPagerAdapter(getChildFragmentManager(), getActivity());
         mTabPager.setAdapter(mDashboardPagerAdapter);
+        mTabPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mDashboardPagerAdapter.updateUI();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         mTabLayout.setupWithViewPager(mTabPager);
     }
 

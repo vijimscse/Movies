@@ -15,11 +15,11 @@ import retrofit2.Response;
  * Created by VijayaLakshmi.IN on 27-02-2018.
  */
 
-public class DashboardPresenter {
+public class MovieListPresenter {
     private DashboardView mView;
     private MovieListBaseFragment mMovieListBaseFragment;
 
-    public DashboardPresenter(DashboardView view, MovieListBaseFragment movieListFragment) {
+    public MovieListPresenter(DashboardView view, MovieListBaseFragment movieListFragment) {
         mView = view;
         mMovieListBaseFragment = movieListFragment;
     }

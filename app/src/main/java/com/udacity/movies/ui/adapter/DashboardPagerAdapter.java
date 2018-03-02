@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.udacity.movies.R;
 import com.udacity.movies.ui.dashboard.fragments.FavoriteFragment;
@@ -16,7 +16,7 @@ import com.udacity.movies.ui.dashboard.fragments.RatingFragment;
  * Created by VijayaLakshmi.IN on 27-02-2018.
  */
 
-public class DashboardPagerAdapter extends FragmentPagerAdapter {
+public class DashboardPagerAdapter extends FragmentStatePagerAdapter {
     private static final int PAGE_COUNT = 3;
     private Context mContext;
     private PopularFragment mPopularFragment;
@@ -48,7 +48,6 @@ public class DashboardPagerAdapter extends FragmentPagerAdapter {
         return title;
     }
 
-
     @Override
     public int getItemPosition(@NonNull Object object) {
         return POSITION_NONE;
@@ -77,5 +76,11 @@ public class DashboardPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return PAGE_COUNT;
+    }
+
+    public void updateUI() {
+        if (mFavoriteFragment != null) {
+            mFavoriteFragment.updateUI();
+        }
     }
 }

@@ -2,16 +2,17 @@ package com.udacity.movies.ui.dashboard.fragments;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.udacity.movies.MoviesApplication;
 import com.udacity.movies.R;
@@ -21,11 +22,13 @@ import com.udacity.movies.dto.Movie;
 import com.udacity.movies.dto.MovieList;
 import com.udacity.movies.ui.adapter.MovieListAdapter;
 import com.udacity.movies.ui.base.BaseFragment;
-import com.udacity.movies.ui.dashboard.DashboardPresenter;
+import com.udacity.movies.ui.customviews.RecyclerViewEmptySupport;
 import com.udacity.movies.ui.dashboard.DashboardView;
 import com.udacity.movies.ui.dashboard.IMovieListFragmentListener;
+import com.udacity.movies.ui.dashboard.MovieListPresenter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -39,13 +42,16 @@ import butterknife.ButterKnife;
 public class MovieListBaseFragment extends BaseFragment implements DashboardView, MovieListAdapter.MovieItemClickListener {
 
     @BindView(R.id.recycler_view)
-    RecyclerView mRecyclerView;
+    RecyclerViewEmptySupport mRecyclerView;
 
     @BindView(R.id.progressBar)
     ProgressBar mProgressBar;
 
+    @BindView(R.id.list_empty)
+    TextView mListEmptyTextView;
+
     @Inject
-    DashboardPresenter mDashboardPresenter;
+    MovieListPresenter mMovieListPresenter;
 
     protected ArrayList<Movie> mMovieList = new ArrayList<>();
     protected MovieListAdapter mMovieListAdapter;
@@ -55,8 +61,8 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        if (! (context instanceof IMovieListFragmentListener)) {
-            throw new IllegalStateException(((FragmentActivity)context).getClass().getSimpleName() +  "must implement" + IMovieListFragmentListener.class.getSimpleName());
+        if (!(context instanceof IMovieListFragmentListener)) {
+            throw new IllegalStateException(((FragmentActivity) context).getClass().getSimpleName() + "must implement" + IMovieListFragmentListener.class.getSimpleName());
         }
         mMovieListFragmentListener = (IMovieListFragmentListener) context;
     }
@@ -82,7 +88,7 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.recycler_view, container, false);
+        View view = inflater.inflate(R.layout.recycler_view, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -95,6 +101,7 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
                 new DashboardModule(this, this)).inject(this);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        mRecyclerView.setEmptyView(mListEmptyTextView);
         mMovieListAdapter = new MovieListAdapter(getActivity(), mMovieList, this);
         mRecyclerView.setAdapter(mMovieListAdapter);
     }
@@ -131,22 +138,76 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
             int count = deleteFromDB(movie.getId());
 
             if (count > 0) {
-                movie.setmIsFavorite(false);
+                if (this instanceof FavoriteFragment) {
+                    mMovieList.remove(position);
+                } else {
+                    movie.setmIsFavorite(false);
+                }
                 mMovieListAdapter.notifyDataSetChanged();
             }
         }
     }
 
     protected void fetchMovieList(int sortType) {
-        mDashboardPresenter.requestMovies(getActivity(), sortType);
+        mMovieListPresenter.requestMovies(getActivity(), sortType);
     }
 
     @Override
     public void setMovieList(MovieList movieList) {
-        if (movieList != null && movieList.getMovies() != null && !movieList.getMovies().isEmpty()) {
+        if (getActivity() != null && movieList != null &&
+                movieList.getMovies() != null && !movieList.getMovies().isEmpty()) {
             mMovieList.clear();
             mMovieList.addAll(movieList.getMovies());
+            updateMovieListFavMovies();
             mMovieListAdapter.notifyDataSetChanged();
+        }
+    }
+
+    protected List<Movie> fetchFavMoviesFromDB() {
+        return getCachedFavMovieList();
+    }
+
+    private List<Movie> getCachedFavMovieList() {
+        List<Movie> movieList = new ArrayList<>();
+        if (getActivity() != null) {
+            Cursor cursor = getActivity().getContentResolver().query(MoviesContract.MovieEntry.CONTENT_URI, null, null, null, null);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    Movie movie = new Movie();
+
+                    movie.setTitle(cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.MOVIE_SHORT_TITLE)));
+                    movie.setId(cursor.getInt(cursor.getColumnIndex(MoviesContract.MovieEntry.MOVIE_ID)));
+                    movie.setVoteAverage(cursor.getDouble(cursor.getColumnIndex(MoviesContract.MovieEntry.USER_RATING)));
+                    movie.setOriginalTitle(cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.MOVIE_ORIGINAL_TITLE)));
+                    movie.setReleaseDate(cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.RELEASE_DATE)));
+                    movie.setPosterPath(cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.POSTER_PATH)));
+                    movie.setOverview(cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.OVERVIEW)));
+                    movie.setmIsFavorite(true);
+
+                    movieList.add(movie);
+                } while (cursor.moveToNext());
+
+                cursor.close();
+            }
+        }
+
+        return movieList;
+    }
+
+    private void updateMovieListFavMovies() {
+        if (getActivity() != null) {
+            List<Movie> movieList = getCachedFavMovieList();
+
+            if (movieList != null && !movieList.isEmpty()) {
+                for (Movie cachedMovie : movieList) {
+                    for (Movie movie : mMovieList) {
+                        if (movie.getId() == cachedMovie.getId()) {
+                            movie.setmIsFavorite(true);
+                        }
+                    }
+                }
+            }
         }
     }
 }
