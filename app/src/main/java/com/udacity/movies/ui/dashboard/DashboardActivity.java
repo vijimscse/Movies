@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.udacity.movies.R;
 import com.udacity.movies.dto.Movie;
 import com.udacity.movies.ui.base.BaseActivity;
+import com.udacity.movies.ui.dashboard.fragments.MovieDetailFragment;
 import com.udacity.movies.ui.dashboard.fragments.MovieListFragment;
 
 /**
@@ -15,7 +16,7 @@ import com.udacity.movies.ui.dashboard.fragments.MovieListFragment;
 
 public class DashboardActivity extends BaseActivity implements IMovieListFragmentListener {
     private MovieListFragment mMovieListFragment;
-  //  private MovieDetailFragment movieDetailFragment;
+    private MovieDetailFragment movieDetailFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,14 +37,14 @@ public class DashboardActivity extends BaseActivity implements IMovieListFragmen
         transaction.commit();
     }
 
-  /*  private void addMovieDetailFragment(Movie selectedMovie) {
+    private void addMovieDetailFragment(Movie selectedMovie) {
         movieDetailFragment = MovieDetailFragment.newInstance(selectedMovie);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, movieDetailFragment);
         transaction.addToBackStack(null);
         transaction.commitAllowingStateLoss();
-    }*/
+    }
 
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -67,6 +68,6 @@ public class DashboardActivity extends BaseActivity implements IMovieListFragmen
 
     @Override
     public void onMovieSelected(Movie selectedMovie) {
-
+        addMovieDetailFragment(selectedMovie);
     }
 }
