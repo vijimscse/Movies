@@ -17,6 +17,9 @@ import butterknife.BindView;
 
 public class ReviewActivity extends BaseActivity {
 
+    @BindView(R.id.review_author)
+    TextView mReviewAuthor;
+
     @BindView(R.id.review_text)
     TextView mReviewText;
 
@@ -26,9 +29,10 @@ public class ReviewActivity extends BaseActivity {
 
         setContentView(R.layout.activity_review);
         setPageTitle(R.string.page_title_review);
-        Review reviewText = getIntent().getParcelableExtra(IBundleKeys.SELECTED_REVIEW);
-        if (reviewText != null) {
-            mReviewText.setText(reviewText.getContent());
+        Review review = getIntent().getParcelableExtra(IBundleKeys.SELECTED_REVIEW);
+        if (review != null) {
+            mReviewText.setText(review.getContent());
+            mReviewAuthor.setText(review.getAuthor());
         }
     }
 }

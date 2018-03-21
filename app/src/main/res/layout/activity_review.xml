@@ -9,9 +9,19 @@
         android:padding="@dimen/activity_vertical_margin">
 
         <TextView
+            android:id="@+id/review_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="@dimen/activity_vertical_margin"
+            android:layout_marginStart="@dimen/activity_vertical_margin"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/review_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/review_author"
             android:padding="@dimen/activity_vertical_margin" />
 
     </RelativeLayout>
