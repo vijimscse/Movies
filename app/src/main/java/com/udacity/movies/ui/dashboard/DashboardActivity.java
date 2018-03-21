@@ -3,6 +3,7 @@ package com.udacity.movies.ui.dashboard;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
 import com.udacity.movies.R;
@@ -75,5 +76,16 @@ public class DashboardActivity extends BaseActivity implements IMovieListFragmen
         intent.putExtra(IBundleKeys.SELECTED_MOVIE, selectedMovie);
         startActivity(intent);
         //addMovieDetailFragment(selectedMovie);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
+        if (fragment instanceof MovieListFragment) {
+            ((MovieListFragment)fragment).updateUI();
+        }
     }
 }

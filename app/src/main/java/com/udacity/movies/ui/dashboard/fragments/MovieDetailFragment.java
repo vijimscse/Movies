@@ -45,9 +45,8 @@ import static com.udacity.movies.utils.IBundleKeys.SELECTED_MOVIE;
 
 /**
  * Created by VijayaLakshmi.IN on 17/03/2018.
- *
+ * <p>
  * Showcases the selected movie details
- *
  */
 public class MovieDetailFragment extends BaseFragment implements View.OnClickListener {
 
@@ -123,7 +122,7 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
         if (getArguments() != null) {
             Bundle bundle = getArguments();
             if ((mSelectedMovie = bundle.getParcelable(SELECTED_MOVIE)) != null) {
-                ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+                ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
                 if (actionBar != null) {
                     actionBar.setTitle(mSelectedMovie.getTitle());
                 }
@@ -202,7 +201,9 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
             Review review = mReviewList.get(index);
             View reviewView = LayoutInflater.from(getActivity()).inflate(R.layout.review_row, null);
             TextView title = reviewView.findViewById(R.id.review);
+            TextView author = reviewView.findViewById(R.id.review_author);
             Button showMoreBtn = reviewView.findViewById(R.id.show_more);
+            author.setText(review.getAuthor());
             String reviewContent = review.getContent();
             int contentLength = reviewContent.length();
             int maxReviewCharacters = getResources().getInteger(R.integer.max_review_characters);
@@ -281,7 +282,7 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
         switch (view.getId()) {
             case R.id.video_row:
                 int position = (int) view.getTag();
-                final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(YOUTUBE_LINK +  mVideoList.get(position).getKey()));
+                final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(YOUTUBE_LINK + mVideoList.get(position).getKey()));
                 intent.putExtra(FORCE_FULL_SCREEN_INTENT, true);
                 // Verify that the intent will resolve to an activity
                 if (intent.resolveActivity(getActivity().getPackageManager()) != null) {

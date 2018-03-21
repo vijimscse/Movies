@@ -14,13 +14,16 @@
     <dimen name="dimen_16_sp">16sp</dimen>
     <dimen name="progress_thickness">2dp</dimen>
     <dimen name="profile_image">70dp</dimen>
-    <dimen name="poster_height">190dp</dimen>
+    <dimen name="poster_height">160dp</dimen>
     <dimen name="movie_title_text_size">20sp</dimen>
     <dimen name="movie_subtitle_text_size">16sp</dimen>
-    <dimen name="poster_width">180dp</dimen>
+    <dimen name="poster_width">120dp</dimen>
     <dimen name="common_padding">10dp</dimen>
-    <dimen name="movie_detail_subtitle_text">20sp</dimen>
     <dimen name="movie_detail_title_height">100dp</dimen>
-    <dimen name="movie_detail_title_text_size">24sp</dimen>
+    <dimen name="movie_detail_title_text_size">20sp</dimen>
     <dimen name="movie_detail_image_height">130dp</dimen>
+    <dimen name="corner_radius">8dp</dimen>
+    <dimen name="play_btn_size">50dp</dimen>
+    <dimen name="dimen_1">1dp</dimen>
+    <dimen name="dimen_2">2dp</dimen>
 </resources>

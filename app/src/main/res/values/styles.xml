@@ -17,9 +17,9 @@
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
         <item name="android:fontFamily">helvetica</item>
-        <item name="android:textColorPrimary">@color/textColorPrimary</item>
-        <item name="android:textColorSecondary">@color/textColorPrimary</item>
-        <item name="actionMenuTextColor">@color/textColorPrimary</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="actionMenuTextColor">@color/white</item>
     </style>
 
     <!-- Default Button Style -->
@@ -61,11 +61,11 @@
     <!-- Dashboard styles -->
     <style name="DashboardTab" parent="Base.Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/MyTabTextAppearance</item>
-        <item name="tabBackground">@color/white</item>
-        <item name="android:background">@color/white</item>
-        <item name="tabTextColor">@color/textColorPrimary</item>
-        <item name="tabSelectedTextColor">@color/colorPrimaryDark</item>
-        <item name="tabIndicatorColor">@color/colorPrimaryDark</item>
+        <item name="tabBackground">@color/colorPrimary</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="tabTextColor">@color/tabTextColorDim</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabIndicatorColor">@color/white</item>
         <item name="tabIndicatorHeight">@dimen/dimen_4</item>
         <item name="tabMaxWidth">0dp</item>
         <item name="tabMode">fixed</item>

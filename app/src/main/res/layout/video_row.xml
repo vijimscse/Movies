@@ -14,8 +14,7 @@
         android:layout_gravity="center_vertical"
         android:drawablePadding="@dimen/common_padding"
         android:drawableTop="@drawable/play"
-        android:gravity="center"
-        tools:text="hi" />
+        android:gravity="center" />
 
     <include layout="@layout/horizontal_divider" />
 

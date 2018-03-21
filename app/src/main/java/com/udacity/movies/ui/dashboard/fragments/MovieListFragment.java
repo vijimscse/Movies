@@ -64,4 +64,10 @@ public class MovieListFragment extends BaseFragment {
     public static MovieListFragment newInstance() {
         return new MovieListFragment();
     }
+
+    public void updateUI() {
+        if (getActivity() != null && mDashboardPagerAdapter != null) {
+            mDashboardPagerAdapter.updateUI();
+        }
+    }
 }

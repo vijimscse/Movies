@@ -54,7 +54,7 @@ public class Movie implements Parcelable {
     @Expose
     private String releaseDate;
 
-    private transient boolean mIsFavorite;
+    private boolean mIsFavorite;
 
     public Movie() {
 
@@ -74,6 +74,7 @@ public class Movie implements Parcelable {
         adult = in.readByte() != 0;
         overview = in.readString();
         releaseDate = in.readString();
+        mIsFavorite = in.readByte() != 0;
     }
 
     @Override
@@ -91,6 +92,7 @@ public class Movie implements Parcelable {
         dest.writeByte((byte) (adult ? 1 : 0));
         dest.writeString(overview);
         dest.writeString(releaseDate);
+        dest.writeByte((byte) (mIsFavorite ? 1 : 0));
     }
 
     @Override

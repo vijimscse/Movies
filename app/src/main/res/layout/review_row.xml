@@ -2,25 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/common_padding"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/common_padding">
 
     <TextView
+        android:id="@+id/review_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
         android:layout_gravity="center_vertical"
-        android:textColor="@android:color/black"
         android:ellipsize="end"
-        android:id="@+id/review"/>
+        android:textStyle="bold"
+        android:gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:gravity="center_vertical" />
 
     <Button
+        android:id="@+id/show_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/show_more"
-        android:visibility="gone"
         android:layout_marginTop="@dimen/dimen_4"
-        android:id="@+id/show_more"/>
+        android:text="@string/show_more"
+        android:visibility="gone" />
 
     <include layout="@layout/divider" />
 
