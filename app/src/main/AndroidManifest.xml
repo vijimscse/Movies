@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".ui.dashboard.DashboardActivity" />
 
+        <activity android:name=".ui.details.MovieDetailActivity" />
+
         <activity android:name=".ui.about.AboutActivity" />
 
         <provider

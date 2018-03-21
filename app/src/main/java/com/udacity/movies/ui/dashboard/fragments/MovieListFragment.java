@@ -40,7 +40,6 @@ public class MovieListFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         mDashboardPagerAdapter = new DashboardPagerAdapter(getChildFragmentManager(), getActivity());
         mTabPager.setAdapter(mDashboardPagerAdapter);
         mTabPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

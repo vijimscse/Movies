@@ -9,7 +9,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -49,12 +48,17 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
         getLayoutInflater().inflate(layoutResId, mViewContainer);
 
         ButterKnife.bind(this);
-        initNavigationDrawer();
+        if (this instanceof DashboardActivity) {
+            initNavigationDrawer();
+        } else {
+            mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        }
         initializeViews();
     }
 
     private void initializeViews() {
         setSupportActionBar(mToolBar);
+        getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -84,27 +88,6 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
 
     protected void setPageTitle(@StringRes int pageTitleResId) {
         getSupportActionBar().setTitle(pageTitleResId);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (this instanceof DashboardActivity) {
-            getMenuInflater().inflate(R.menu.menu, menu);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     /**
@@ -138,9 +121,23 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
                 super.onDrawerClosed(drawerView);
             }
         };
-
         mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
         mActionBarDrawerToggle.syncState();
         mActionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (this instanceof DashboardActivity) {
+                    mDrawerLayout.openDrawer(GravityCompat.START);  // OPEN DRAWER
+                } else {
+                    onBackPressed();
+                }
+                return true;
+        }
+
+        return false;
     }
 }

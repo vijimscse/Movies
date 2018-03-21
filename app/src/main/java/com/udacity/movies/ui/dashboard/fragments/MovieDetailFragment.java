@@ -97,19 +97,6 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
         return movieDetailFragment;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setHasOptionsMenu(true);
-
-        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeButtonEnabled(true);
-        }
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -131,7 +118,6 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
                 if (actionBar != null) {
                     actionBar.setTitle(mSelectedMovie.getTitle());
                 }
-
                 mTitle.setText(mSelectedMovie.getOriginalTitle());
                 mSynopsis.setText(mSelectedMovie.getOverview());
                 mUserRating.setText(String.valueOf(mSelectedMovie.getVoteAverage()));
@@ -157,7 +143,7 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
             IOManager.requestTrailerVideos(mSelectedMovie.getId(), new Callback<VideoList>() {
                 @Override
                 public void onResponse(Call<VideoList> call, Response<VideoList> response) {
-                    if (!isDetached() && response != null && response.body() != null) {
+                    if (!isDetached() && isAdded() && response != null && response.body() != null) {
                         List videoList = response.body().getVideos();
                         if (videoList != null && !videoList.isEmpty()) {
                             mVideoList.addAll(videoList);
@@ -180,17 +166,19 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
     }
 
     private void showVideoList() {
-        mTrailerListContainer.removeAllViews();
+        if (getActivity() != null) {
+            mTrailerListContainer.removeAllViews();
 
-        for (int i = 0; i < mVideoList.size(); i++) {
-            Video video = mVideoList.get(i);
+            for (int i = 0; i < mVideoList.size(); i++) {
+                Video video = mVideoList.get(i);
 
-            View trailerView = LayoutInflater.from(getActivity()).inflate(R.layout.video_row, null);
-            trailerView.setTag(i);
-            TextView title = (TextView) trailerView.findViewById(R.id.video_title);
-            title.setText(video.getName());
-            trailerView.setOnClickListener(this);
-            mTrailerListContainer.addView(trailerView);
+                View trailerView = LayoutInflater.from(getActivity()).inflate(R.layout.video_row, null);
+                trailerView.setTag(i);
+                TextView title = (TextView) trailerView.findViewById(R.id.video_title);
+                title.setText(video.getName());
+                trailerView.setOnClickListener(this);
+                mTrailerListContainer.addView(trailerView);
+            }
         }
     }
 

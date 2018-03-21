@@ -56,36 +56,58 @@ public class Movie implements Parcelable {
 
     private transient boolean mIsFavorite;
 
-    public final static Creator<Movie> CREATOR = new Creator<Movie>() {
+    public Movie() {
 
+    }
 
-        @SuppressWarnings({
-            "unchecked"
-        })
+    protected Movie(Parcel in) {
+        voteCount = in.readInt();
+        id = in.readInt();
+        video = in.readByte() != 0;
+        voteAverage = in.readDouble();
+        title = in.readString();
+        popularity = in.readDouble();
+        posterPath = in.readString();
+        originalLanguage = in.readString();
+        originalTitle = in.readString();
+        backdropPath = in.readString();
+        adult = in.readByte() != 0;
+        overview = in.readString();
+        releaseDate = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(voteCount);
+        dest.writeInt(id);
+        dest.writeByte((byte) (video ? 1 : 0));
+        dest.writeDouble(voteAverage);
+        dest.writeString(title);
+        dest.writeDouble(popularity);
+        dest.writeString(posterPath);
+        dest.writeString(originalLanguage);
+        dest.writeString(originalTitle);
+        dest.writeString(backdropPath);
+        dest.writeByte((byte) (adult ? 1 : 0));
+        dest.writeString(overview);
+        dest.writeString(releaseDate);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
         public Movie createFromParcel(Parcel in) {
-            Movie instance = new Movie();
-            instance.voteCount = in.readInt();
-            instance.id = in.readInt();
-            instance.video = in.readInt() == 1;
-            instance.voteAverage = in.readDouble();
-            instance.title = in.readString();
-            instance.popularity = in.readDouble();
-            instance.posterPath = in.readString();
-            instance.originalLanguage = in.readString();
-            instance.originalTitle = in.readString(); in.readString();
-            in.readList(instance.genreIds, (Integer.class.getClassLoader()));
-            instance.backdropPath = in.readString();
-            instance.adult = in.readInt() == 1;
-            instance.overview = in.readString();
-            instance.releaseDate = in.readString();
-            instance.mIsFavorite = in.readInt() == 1;
-            return instance;
+            return new Movie(in);
         }
 
+        @Override
         public Movie[] newArray(int size) {
-            return (new Movie[size]);
+            return new Movie[size];
         }
-
     };
 
     public boolean isFavorite() {
@@ -206,28 +228,6 @@ public class Movie implements Parcelable {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
-    }
-
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(voteCount);
-        dest.writeInt(id);
-        dest.writeInt(video ? 1 : 0);
-        dest.writeDouble(voteAverage);
-        dest.writeString(title);
-        dest.writeDouble(popularity);
-        dest.writeString(posterPath);
-        dest.writeString(originalLanguage);
-        dest.writeString(originalTitle);
-        dest.writeList(genreIds);
-        dest.writeString(backdropPath);
-        dest.writeInt(adult ? 1 : 0);
-        dest.writeString(overview);
-        dest.writeString(releaseDate);
-        dest.writeInt(mIsFavorite ? 1 : 0);
-    }
-
-    public int describeContents() {
-        return  0;
     }
 
 }

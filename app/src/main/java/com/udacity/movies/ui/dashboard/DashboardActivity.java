@@ -1,5 +1,6 @@
 package com.udacity.movies.ui.dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
@@ -9,6 +10,8 @@ import com.udacity.movies.dto.Movie;
 import com.udacity.movies.ui.base.BaseActivity;
 import com.udacity.movies.ui.dashboard.fragments.MovieDetailFragment;
 import com.udacity.movies.ui.dashboard.fragments.MovieListFragment;
+import com.udacity.movies.ui.details.MovieDetailActivity;
+import com.udacity.movies.utils.IBundleKeys;
 
 /**
  * Created by VijayaLakshmi.IN on 27-02-2018.
@@ -43,7 +46,7 @@ public class DashboardActivity extends BaseActivity implements IMovieListFragmen
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, movieDetailFragment);
         transaction.addToBackStack(null);
-        transaction.commitAllowingStateLoss();
+        transaction.commit();
     }
 
     protected void onSaveInstanceState(Bundle outState) {
@@ -68,6 +71,9 @@ public class DashboardActivity extends BaseActivity implements IMovieListFragmen
 
     @Override
     public void onMovieSelected(Movie selectedMovie) {
-        addMovieDetailFragment(selectedMovie);
+        Intent intent = new Intent(this, MovieDetailActivity.class);
+        intent.putExtra(IBundleKeys.SELECTED_MOVIE, selectedMovie);
+        startActivity(intent);
+        //addMovieDetailFragment(selectedMovie);
     }
 }
