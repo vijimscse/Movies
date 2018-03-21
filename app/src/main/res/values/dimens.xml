@@ -3,7 +3,7 @@
     <dimen name="action_bar_elevation">2dp</dimen>
     <dimen name="dimen_8">8dp</dimen>
     <dimen name="dimen_4">4dp</dimen>
-    <dimen name="buttons_font_size">@dimen/body_font_size</dimen>
+    <dimen name="buttons_font_size">12sp</dimen>
     <dimen name="body_font_size">14sp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="header_subtitle_height">100dp</dimen>

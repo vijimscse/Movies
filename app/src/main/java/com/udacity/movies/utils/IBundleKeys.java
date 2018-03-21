@@ -7,4 +7,5 @@ package com.udacity.movies.utils;
 public interface IBundleKeys {
     String SELECTED_MOVIE = "Selected Movie";
     String MOVIE_LIST = "movie_list";
+    String SELECTED_REVIEW = "selected_review";
 }

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -23,8 +24,10 @@ import com.udacity.movies.dto.ReviewList;
 import com.udacity.movies.dto.Video;
 import com.udacity.movies.dto.VideoList;
 import com.udacity.movies.io.IOManager;
+import com.udacity.movies.ui.ReviewActivity;
 import com.udacity.movies.ui.base.BaseFragment;
 import com.udacity.movies.utils.DateFormatter;
+import com.udacity.movies.utils.IBundleKeys;
 import com.udacity.movies.utils.NetworkUtility;
 
 import java.util.ArrayList;
@@ -84,6 +87,9 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
 
     @BindView(R.id.scrollview)
     ScrollView mScrollView;
+
+    @BindView(R.id.reviews_title)
+    TextView mReviewsTitle;
 
     private ArrayList<Video> mVideoList = new ArrayList<>();
     private ArrayList<Review> mReviewList = new ArrayList<>();
@@ -174,7 +180,7 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
 
                 View trailerView = LayoutInflater.from(getActivity()).inflate(R.layout.video_row, null);
                 trailerView.setTag(i);
-                TextView title = (TextView) trailerView.findViewById(R.id.video_title);
+                TextView title = trailerView.findViewById(R.id.video_title);
                 title.setText(video.getName());
                 trailerView.setOnClickListener(this);
                 mTrailerListContainer.addView(trailerView);
@@ -185,11 +191,31 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
     private void showReviewList() {
         mReviewListContainer.removeAllViews();
 
-        for (Review review : mReviewList) {
+        for (int index = 0; index < mReviewList.size(); index++) {
+            Review review = mReviewList.get(index);
             View reviewView = LayoutInflater.from(getActivity()).inflate(R.layout.review_row, null);
-
-            TextView title = (TextView) reviewView.findViewById(R.id.review);
-            title.setText(review.getContent());
+            TextView title = reviewView.findViewById(R.id.review);
+            Button showMoreBtn = reviewView.findViewById(R.id.show_more);
+            String reviewContent = review.getContent();
+            int contentLength = reviewContent.length();
+            int maxReviewCharacters = getResources().getInteger(R.integer.max_review_characters);
+            if (contentLength > maxReviewCharacters) {
+                title.setText(getString(R.string.review_text, reviewContent.substring(0, maxReviewCharacters)));
+            } else {
+                title.setText(reviewContent);
+            }
+            showMoreBtn.setTag(index);
+            showMoreBtn.setVisibility(contentLength > maxReviewCharacters ? View.VISIBLE : View.GONE);
+            showMoreBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = (int) view.getTag();
+                    Review review = mReviewList.get(position);
+                    Intent intent = new Intent(getActivity(), ReviewActivity.class);
+                    intent.putExtra(IBundleKeys.SELECTED_REVIEW, review);
+                    startActivity(intent);
+                }
+            });
             mReviewListContainer.addView(reviewView);
         }
     }
@@ -204,6 +230,7 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
                         List reviewList = response.body().getReviews();
                         if (reviewList != null && !reviewList.isEmpty()) {
                             mReviewList.addAll(reviewList);
+                            mReviewsTitle.setText(getString(R.string.reviews, reviewList.size()));
                             mReviewContainer.setVisibility(View.VISIBLE);
                             showReviewList();
                         } else {

@@ -15,6 +15,9 @@
     <string name="favorite_content_desc">The movie can be marked as favorite on tapping this icon</string>
     <string name="content_authority">com.udacity.movies.app</string>
     <string name="no_movies_found">No movies found!</string>
-    <string name="reviews">Reviews:</string>
+    <string name="reviews">Reviews:(%d)</string>
     <string name="trailers">Trailers:</string>
+    <string name="show_more">Show more</string>
+    <string name="page_title_review">Review</string>
+    <string name="review_text">%s ...</string>
 </resources>

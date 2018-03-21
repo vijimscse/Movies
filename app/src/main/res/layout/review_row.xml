@@ -11,7 +11,16 @@
         android:gravity="center_vertical"
         android:layout_gravity="center_vertical"
         android:textColor="@android:color/black"
+        android:ellipsize="end"
         android:id="@+id/review"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_more"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/dimen_4"
+        android:id="@+id/show_more"/>
 
     <include layout="@layout/divider" />
 
