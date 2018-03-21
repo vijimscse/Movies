@@ -17,7 +17,9 @@
     <string name="no_movies_found">No movies found!</string>
     <string name="reviews">Reviews:(%d)</string>
     <string name="trailers">Trailers:</string>
-    <string name="show_more">Show more</string>
+    <string name="show_more">Show Full</string>
     <string name="page_title_review">Review</string>
     <string name="review_text">%s ...</string>
+    <string name="play_button_description">Play button</string>
+    <string name="movie_backdrop_image">Movie Backdrop Image</string>
 </resources>

@@ -59,7 +59,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         movieViewHolder.mReleaseDate.setText(DateFormatter.getDateFormat(movie.getReleaseDate()));
         movieViewHolder.mUserRating.setText(String.valueOf(movie.getVoteAverage()));
         Picasso.with(mContext)
-                .load(IMAGE_BASE_URL + movie.getPosterPath())
+                .load(IMAGE_BASE_URL + movie.getBackdropPath())
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.image_error)
                 .into(movieViewHolder.mPosterPath);

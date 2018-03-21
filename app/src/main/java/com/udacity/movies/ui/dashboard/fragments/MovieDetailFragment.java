@@ -91,6 +91,9 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
     @BindView(R.id.reviews_title)
     TextView mReviewsTitle;
 
+    @BindView(R.id.movie_image)
+    ImageView mMovieImage;
+
     private ArrayList<Video> mVideoList = new ArrayList<>();
     private ArrayList<Review> mReviewList = new ArrayList<>();
 
@@ -127,6 +130,10 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
                 mTitle.setText(mSelectedMovie.getOriginalTitle());
                 mSynopsis.setText(mSelectedMovie.getOverview());
                 mUserRating.setText(String.valueOf(mSelectedMovie.getVoteAverage()));
+                Picasso.with(getActivity()).load(IMAGE_BASE_URL + mSelectedMovie.getBackdropPath())
+                        .placeholder(R.drawable.placeholder)
+                        .error(R.drawable.image_error)
+                        .into(mMovieImage);
                 Picasso.with(getActivity()).load(IMAGE_BASE_URL + mSelectedMovie.getPosterPath())
                         .placeholder(R.drawable.placeholder)
                         .error(R.drawable.image_error)
