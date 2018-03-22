@@ -7,14 +7,24 @@
     android:orientation="horizontal"
     android:padding="@dimen/common_padding">
 
-    <TextView
-        android:id="@+id/video_title"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:drawablePadding="@dimen/common_padding"
-        android:drawableTop="@drawable/play"
-        android:gravity="center" />
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/video_row_play_btn_size"
+            android:layout_height="@dimen/video_row_play_btn_size"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_play_circle_filled_black_24dp" />
+
+        <TextView
+            android:id="@+id/video_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center" />
+    </LinearLayout>
 
     <include layout="@layout/horizontal_divider" />
 

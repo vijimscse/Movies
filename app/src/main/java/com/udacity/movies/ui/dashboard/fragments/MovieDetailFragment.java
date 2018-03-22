@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -85,7 +85,7 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
     ViewGroup mReviewContainer;
 
     @BindView(R.id.scrollview)
-    ScrollView mScrollView;
+    NestedScrollView mScrollView;
 
     @BindView(R.id.reviews_title)
     TextView mReviewsTitle;

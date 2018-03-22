@@ -1,8 +1,10 @@
 package com.udacity.movies.ui.base;
 
 import android.content.Intent;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.udacity.movies.R;
@@ -37,7 +40,13 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
     Toolbar mToolBar;
 
     @BindView(R.id.view_container)
-    RelativeLayout mViewContainer;
+    FrameLayout mViewContainer;
+
+    @BindView(R.id.collapse_toolbar)
+    CollapsingToolbarLayout mCollapseToolBar;
+
+    @BindView(R.id.header_container)
+    RelativeLayout mHeaderContainer;
 
     private ActionBarDrawerToggle mActionBarDrawerToggle;
 
@@ -139,5 +148,15 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
         }
 
         return false;
+    }
+
+    protected void hideToolBar() {
+        mCollapseToolBar.setVisibility(View.GONE);
+    }
+
+    protected void addHeaderView(@LayoutRes int layoutRes) {
+        if (layoutRes != 0) {
+            getLayoutInflater().inflate(layoutRes, mHeaderContainer, true);
+        }
     }
 }

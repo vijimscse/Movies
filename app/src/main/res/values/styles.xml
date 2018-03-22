@@ -20,6 +20,7 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
         <item name="actionMenuTextColor">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
     </style>
 
     <!-- Default Button Style -->
