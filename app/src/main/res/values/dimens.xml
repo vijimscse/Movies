@@ -27,4 +27,5 @@
     <dimen name="dimen_1">1dp</dimen>
     <dimen name="dimen_2">2dp</dimen>
     <dimen name="video_row_play_btn_size">40dp</dimen>
+    <dimen name="dimen_32">32dp</dimen>
 </resources>

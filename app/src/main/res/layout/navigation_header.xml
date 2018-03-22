@@ -5,7 +5,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary"
     android:orientation="horizontal"
-    android:padding="@dimen/activity_vertical_margin">
+    android:paddingTop="@dimen/dimen_32"
+    android:paddingStart="@dimen/activity_vertical_margin"
+    android:paddingEnd="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/dimen_32"
+    android:paddingLeft="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_vertical_margin">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/nav_profile_image"
