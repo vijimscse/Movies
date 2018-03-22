@@ -26,6 +26,7 @@ public class MoviesDBHelper extends SQLiteOpenHelper {
 				MoviesContract.MovieEntry.MOVIE_SHORT_TITLE + " TEXT, " +
 				MoviesContract.MovieEntry.MOVIE_ORIGINAL_TITLE + " TEXT, " +
 				MoviesContract.MovieEntry.POSTER_PATH + " TEXT, " +
+				MoviesContract.MovieEntry.BACKDROP_PATH + " TEXT, " +
 				MoviesContract.MovieEntry.RELEASE_DATE + " TEXT, " +
 				MoviesContract.MovieEntry.OVERVIEW + " TEXT, " +
 				MoviesContract.MovieEntry.USER_RATING + " REAL DEFAULT 0.0 )";

@@ -21,6 +21,7 @@ public class MoviesContract {
 		public static final String MOVIE_ID = "movie_id";
 		public static final String MOVIE_SHORT_TITLE = "title";
 		public static final String POSTER_PATH = "poster_path";
+		public static final String BACKDROP_PATH = "backdrop_path";
 		public static final String MOVIE_ORIGINAL_TITLE = "original_title";
 		public static final String OVERVIEW = "overview";
 		public static final String RELEASE_DATE = "release_date";

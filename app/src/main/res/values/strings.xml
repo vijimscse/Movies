@@ -22,4 +22,11 @@
     <string name="review_text">%s ...</string>
     <string name="play_button_description">Play button</string>
     <string name="movie_backdrop_image">Movie Backdrop Image</string>
+    <string name="powered_by_text">Powered By themoviedb</string>
+    <string name="page_title_about">About</string>
+    <string name="about_poster">About poster image</string>
+    <string name="splash_image_description">Splash Center image</string>
+    <string name="loader_inner_image">Loader Inner Image</string>
+    <string name="loader_outer_image">Loader outer image</string>
+    <string name="profile_image">Profile Image</string>
 </resources>

@@ -76,6 +76,7 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
         contentValues.put(MoviesContract.MovieEntry.RELEASE_DATE, movie.getReleaseDate());
         contentValues.put(MoviesContract.MovieEntry.USER_RATING, movie.getVoteAverage());
         contentValues.put(MoviesContract.MovieEntry.POSTER_PATH, movie.getPosterPath());
+        contentValues.put(MoviesContract.MovieEntry.BACKDROP_PATH, movie.getBackdropPath());
 
         getActivity().getContentResolver().insert(MoviesContract.MovieEntry.CONTENT_URI, contentValues);
     }
@@ -182,6 +183,7 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
                     movie.setOriginalTitle(cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.MOVIE_ORIGINAL_TITLE)));
                     movie.setReleaseDate(cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.RELEASE_DATE)));
                     movie.setPosterPath(cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.POSTER_PATH)));
+                    movie.setBackdropPath(cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.BACKDROP_PATH)));
                     movie.setOverview(cursor.getString(cursor.getColumnIndex(MoviesContract.MovieEntry.OVERVIEW)));
                     movie.setmIsFavorite(true);
 

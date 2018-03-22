@@ -301,6 +301,7 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
         contentValues.put(MoviesContract.MovieEntry.RELEASE_DATE, movie.getReleaseDate());
         contentValues.put(MoviesContract.MovieEntry.USER_RATING, movie.getVoteAverage());
         contentValues.put(MoviesContract.MovieEntry.POSTER_PATH, movie.getPosterPath());
+        contentValues.put(MoviesContract.MovieEntry.BACKDROP_PATH, movie.getBackdropPath());
 
         getActivity().getContentResolver().insert(MoviesContract.MovieEntry.CONTENT_URI, contentValues);
     }

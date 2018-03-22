@@ -15,6 +15,7 @@
         <ImageView
             android:layout_width="@dimen/video_row_play_btn_size"
             android:layout_height="@dimen/video_row_play_btn_size"
+            android:contentDescription="@string/play_button_description"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_play_circle_filled_black_24dp" />
 
