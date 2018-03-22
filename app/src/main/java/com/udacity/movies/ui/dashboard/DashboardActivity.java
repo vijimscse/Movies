@@ -21,6 +21,7 @@ import com.udacity.movies.utils.IBundleKeys;
 public class DashboardActivity extends BaseActivity implements IMovieListFragmentListener {
     private MovieListFragment mMovieListFragment;
     private MovieDetailFragment movieDetailFragment;
+    private Movie mSelectedMovie;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,8 +31,12 @@ public class DashboardActivity extends BaseActivity implements IMovieListFragmen
         setPageTitle(R.string.dashboard);
         if (savedInstanceState != null) {
             return;
+        } else {
+            addMovieListFragment();
         }
-        addMovieListFragment();
+        if (getResources().getBoolean(R.bool.multipane) && mSelectedMovie != null) {
+            addMovieDetailFragment(mSelectedMovie);
+        }
     }
 
     private void addMovieListFragment() {
@@ -42,11 +47,11 @@ public class DashboardActivity extends BaseActivity implements IMovieListFragmen
     }
 
     private void addMovieDetailFragment(Movie selectedMovie) {
+        mSelectedMovie = selectedMovie;
         movieDetailFragment = MovieDetailFragment.newInstance(selectedMovie);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, movieDetailFragment);
-        transaction.addToBackStack(null);
+        transaction.replace(R.id.fragment2_container, movieDetailFragment);
         transaction.commit();
     }
 
@@ -72,10 +77,13 @@ public class DashboardActivity extends BaseActivity implements IMovieListFragmen
 
     @Override
     public void onMovieSelected(Movie selectedMovie) {
-        Intent intent = new Intent(this, MovieDetailActivity.class);
-        intent.putExtra(IBundleKeys.SELECTED_MOVIE, selectedMovie);
-        startActivity(intent);
-        //addMovieDetailFragment(selectedMovie);
+        if (!getResources().getBoolean(R.bool.multipane)) {
+            Intent intent = new Intent(this, MovieDetailActivity.class);
+            intent.putExtra(IBundleKeys.SELECTED_MOVIE, selectedMovie);
+            startActivity(intent);
+        } else {
+            addMovieDetailFragment(selectedMovie);
+        }
     }
 
     @Override

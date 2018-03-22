@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="action_bar_elevation">4dp</dimen>
+    <dimen name="dimen_8">8dp</dimen>
+    <dimen name="dimen_4">4dp</dimen>
+    <dimen name="buttons_font_size">14sp</dimen>
+    <dimen name="body_font_size">16sp</dimen>
+    <dimen name="activity_vertical_margin">20dp</dimen>
+    <dimen name="header_subtitle_height">120dp</dimen>
+    <dimen name="dp_120">120dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
+    <dimen name="dp_140">140dp</dimen>
+    <dimen name="dimen_12">12dp</dimen>
+    <dimen name="dimen_16_sp">16sp</dimen>
+    <dimen name="progress_thickness">2dp</dimen>
+    <dimen name="profile_image">90dp</dimen>
+    <dimen name="poster_height">200dp</dimen>
+    <dimen name="movie_title_text_size">24sp</dimen>
+    <dimen name="movie_subtitle_text_size">18sp</dimen>
+    <dimen name="poster_width">150dp</dimen>
+    <dimen name="common_padding">12dp</dimen>
+    <dimen name="movie_detail_title_text_size">24sp</dimen>
+    <dimen name="movie_detail_image_height">190dp</dimen>
+    <dimen name="corner_radius">12dp</dimen>
+    <dimen name="play_btn_size">70dp</dimen>
+    <dimen name="dimen_1">1dp</dimen>
+    <dimen name="dimen_2">2dp</dimen>
+    <dimen name="video_row_play_btn_size">60dp</dimen>
+    <dimen name="dimen_32">32dp</dimen>
+</resources>

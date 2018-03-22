@@ -234,7 +234,7 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
             IOManager.requestMovieReviews(mSelectedMovie.getId(), new Callback<ReviewList>() {
                 @Override
                 public void onResponse(Call<ReviewList> call, Response<ReviewList> response) {
-                    if (!isDetached() && response != null && response.body() != null) {
+                    if (getActivity() != null && isAdded() && response != null && response.body() != null) {
                         List reviewList = response.body().getReviews();
                         if (reviewList != null && !reviewList.isEmpty()) {
                             mReviewList.addAll(reviewList);
@@ -251,7 +251,9 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
 
                 @Override
                 public void onFailure(Call<ReviewList> call, Throwable t) {
-                    mReviewContainer.setVisibility(View.GONE);
+                    if (getActivity() != null && isAdded()) {
+                        mReviewContainer.setVisibility(View.GONE);
+                    }
                 }
             });
         }
