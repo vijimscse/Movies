@@ -310,4 +310,34 @@ public class MovieDetailFragment extends BaseFragment implements View.OnClickLis
         return getActivity().getContentResolver().delete(MoviesContract.MovieEntry.buildMoviesUri(movieID),
                 null, null);
     }
+
+    public int getScrollX() {
+        int x = 0;
+        if (getActivity() != null) {
+            x = mScrollView.getScrollX();
+        }
+
+        return x;
+    }
+
+    public int getScrollY() {
+        int y = 0;
+
+        if (getActivity() != null) {
+            y = mScrollView.getScrollY();
+        }
+
+        return y;
+    }
+
+    public void scroll(final int x, final int y) {
+        if (getActivity() != null) {
+            mScrollView.post(new Runnable() {
+                @Override
+                public void run() {
+                    mScrollView.smoothScrollTo(x, y);
+                }
+            });
+        }
+    }
 }

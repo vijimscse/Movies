@@ -53,21 +53,21 @@ public class DashboardActivity extends BaseActivity implements IMovieListFragmen
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-      /*  Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if (fragment != null && fragment instanceof MovieDetailFragment) {
             outState.putIntArray("ARTICLE_SCROLL_POSITION",
                     new int[]{((MovieDetailFragment)fragment).getScrollX(), ((MovieDetailFragment)fragment).getScrollY()});
-        }*/
+        }
     }
 
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-    /*    final int[] position = savedInstanceState.getIntArray("ARTICLE_SCROLL_POSITION");
+        final int[] position = savedInstanceState.getIntArray("ARTICLE_SCROLL_POSITION");
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if (position != null && fragment != null && fragment instanceof MovieDetailFragment) {
             ((MovieDetailFragment)fragment).scroll(position[0], position[1]);
-        }*/
+        }
     }
 
     @Override

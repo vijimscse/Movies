@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import com.udacity.movies.ui.customviews.RecyclerViewEmptySupport;
 import com.udacity.movies.ui.dashboard.DashboardView;
 import com.udacity.movies.ui.dashboard.IMovieListFragmentListener;
 import com.udacity.movies.ui.dashboard.MovieListPresenter;
+import com.udacity.movies.utils.IBundleKeys;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,10 +103,18 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
         ((MoviesApplication) getActivity().getApplicationContext()).getAppComponent().plus(
                 new DashboardModule(this, this)).inject(this);
 
+        if (savedInstanceState != null) {
+            ArrayList<Movie> movieList = savedInstanceState.getParcelableArrayList(IBundleKeys.MOVIE_LIST);
+            mMovieList.clear();
+            if (movieList != null && !movieList.isEmpty()) {
+                mMovieList.addAll(movieList);
+            }
+        }
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setEmptyView(mListEmptyTextView);
         mMovieListAdapter = new MovieListAdapter(getActivity(), mMovieList, this);
         mRecyclerView.setAdapter(mMovieListAdapter);
+        updateMovieListFavMovies();
     }
 
     @Override
@@ -122,6 +132,14 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
     @Override
     public void onItemClick(int position) {
         mMovieListFragmentListener.onMovieSelected(mMovieList.get(position));
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelableArrayList(IBundleKeys.MOVIE_LIST, mMovieList);
+        Log.d("TAG", "Fragment onsave");
     }
 
     @Override
@@ -150,7 +168,11 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
     }
 
     protected void fetchMovieList(int sortType) {
-        mMovieListPresenter.requestMovies(getActivity(), sortType);
+        if (mMovieList == null || mMovieList.isEmpty()) {
+            mMovieListPresenter.requestMovies(getActivity(), sortType);
+        } else {
+            mProgressBar.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -160,7 +182,6 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
             mMovieList.clear();
             mMovieList.addAll(movieList.getMovies());
             updateMovieListFavMovies();
-            mMovieListAdapter.notifyDataSetChanged();
         }
     }
 
