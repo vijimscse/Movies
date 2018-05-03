@@ -56,6 +56,8 @@ public class Movie implements Parcelable {
 
     private boolean mIsFavorite;
 
+    private boolean mSelected;
+
     public Movie() {
 
     }
@@ -75,6 +77,7 @@ public class Movie implements Parcelable {
         overview = in.readString();
         releaseDate = in.readString();
         mIsFavorite = in.readByte() != 0;
+        mSelected = in.readByte() != 0;
     }
 
     @Override
@@ -93,6 +96,7 @@ public class Movie implements Parcelable {
         dest.writeString(overview);
         dest.writeString(releaseDate);
         dest.writeByte((byte) (mIsFavorite ? 1 : 0));
+        dest.writeByte((byte) (mSelected ? 1 : 0));
     }
 
     @Override
@@ -232,4 +236,11 @@ public class Movie implements Parcelable {
         this.releaseDate = releaseDate;
     }
 
+    public boolean isSelected() {
+        return mSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        mSelected = selected;
+    }
 }

@@ -1,4 +1,4 @@
-package com.udacity.movies.ui.dashboard.fragments;
+package com.udacity.movies.ui.details;
 
 import android.content.ContentValues;
 import android.content.Intent;

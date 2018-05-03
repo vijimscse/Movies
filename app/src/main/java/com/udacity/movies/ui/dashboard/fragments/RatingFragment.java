@@ -3,6 +3,8 @@ package com.udacity.movies.ui.dashboard.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.udacity.movies.R;
+import com.udacity.movies.utils.Constants;
 import com.udacity.movies.utils.SortType;
 
 /**
@@ -21,7 +23,25 @@ public class RatingFragment extends MovieListBaseFragment {
         fetchMovieList(SortType.TOP_RATED);
     }
 
+    @Override
+    public void setSelectedPos() {
+        if (Constants.mSelectedFragmentPosition == 1 && Constants.mSelectedItemPosition != -1) {
+            mRecyclerView.getLayoutManager().scrollToPosition(Constants.mSelectedItemPosition);
+            if (mMovieList.size() > Constants.mSelectedItemPosition && getResources().getBoolean(R.bool.multipane)) {
+                mMovieListFragmentListener.onMovieSelected(mMovieList.get(Constants.mSelectedItemPosition));
+            }
+        }
+    }
+
     public void updateUI() {
         updateMovieListFavMovies();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        //mSelectedMoviePosition = position;
+        Constants.mSelectedFragmentPosition = 1;
+        Constants.mSelectedItemPosition = position;
+        mMovieListFragmentListener.onMovieSelected(mMovieList.get(position));
     }
 }

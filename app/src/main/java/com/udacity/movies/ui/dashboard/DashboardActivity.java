@@ -9,9 +9,9 @@ import android.support.v4.app.FragmentTransaction;
 import com.udacity.movies.R;
 import com.udacity.movies.dto.Movie;
 import com.udacity.movies.ui.base.BaseActivity;
-import com.udacity.movies.ui.dashboard.fragments.MovieDetailFragment;
 import com.udacity.movies.ui.dashboard.fragments.MovieListFragment;
 import com.udacity.movies.ui.details.MovieDetailActivity;
+import com.udacity.movies.ui.details.MovieDetailFragment;
 import com.udacity.movies.utils.IBundleKeys;
 
 /**
@@ -77,6 +77,7 @@ public class DashboardActivity extends BaseActivity implements IMovieListFragmen
 
     @Override
     public void onMovieSelected(Movie selectedMovie) {
+        selectedMovie.setSelected(true);
         if (!getResources().getBoolean(R.bool.multipane)) {
             Intent intent = new Intent(this, MovieDetailActivity.class);
             intent.putExtra(IBundleKeys.SELECTED_MOVIE, selectedMovie);

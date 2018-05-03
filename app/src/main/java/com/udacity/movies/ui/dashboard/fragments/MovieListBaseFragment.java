@@ -41,7 +41,7 @@ import butterknife.ButterKnife;
  * Created by VijayaLakshmi.IN on 27-02-2018.
  */
 
-public class MovieListBaseFragment extends BaseFragment implements DashboardView, MovieListAdapter.MovieItemClickListener {
+public abstract class MovieListBaseFragment extends BaseFragment implements DashboardView, MovieListAdapter.MovieItemClickListener {
 
     @BindView(R.id.recycler_view)
     RecyclerViewEmptySupport mRecyclerView;
@@ -105,6 +105,7 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
 
         if (savedInstanceState != null) {
             ArrayList<Movie> movieList = savedInstanceState.getParcelableArrayList(IBundleKeys.MOVIE_LIST);
+            //mSelectedMoviePosition = savedInstanceState.getInt(IBundleKeys.SELECTED_MOVIE_POSITION);
             mMovieList.clear();
             if (movieList != null && !movieList.isEmpty()) {
                 mMovieList.addAll(movieList);
@@ -115,6 +116,7 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
         mMovieListAdapter = new MovieListAdapter(getActivity(), mMovieList, this);
         mRecyclerView.setAdapter(mMovieListAdapter);
         updateMovieListFavMovies();
+        setSelectedPos();
     }
 
     @Override
@@ -130,15 +132,11 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
     }
 
     @Override
-    public void onItemClick(int position) {
-        mMovieListFragmentListener.onMovieSelected(mMovieList.get(position));
-    }
-
-    @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
         outState.putParcelableArrayList(IBundleKeys.MOVIE_LIST, mMovieList);
+   //     outState.putInt(IBundleKeys.SELECTED_MOVIE_POSITION, mSelectedMoviePosition);
         Log.d("TAG", "Fragment onsave");
     }
 
@@ -182,6 +180,7 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
             mMovieList.clear();
             mMovieList.addAll(movieList.getMovies());
             updateMovieListFavMovies();
+            setSelectedPos();
         }
     }
 
@@ -237,4 +236,6 @@ public class MovieListBaseFragment extends BaseFragment implements DashboardView
             mMovieListAdapter.notifyDataSetChanged();
         }
     }
+
+    public abstract void setSelectedPos();
 }

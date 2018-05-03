@@ -1,5 +1,6 @@
 package com.udacity.movies.ui.details;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
@@ -7,7 +8,6 @@ import android.support.v4.app.FragmentTransaction;
 import com.udacity.movies.R;
 import com.udacity.movies.dto.Movie;
 import com.udacity.movies.ui.base.BaseActivity;
-import com.udacity.movies.ui.dashboard.fragments.MovieDetailFragment;
 
 import static com.udacity.movies.utils.IBundleKeys.SELECTED_MOVIE;
 
@@ -25,6 +25,9 @@ public class MovieDetailActivity extends BaseActivity {
 
         setContentView(R.layout.activity_dashboard);
         setPageTitle(R.string.dashboard);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE && getResources().getBoolean(R.bool.multipane)) {
+            finish();
+        }
         if (savedInstanceState != null) {
             return;
         }
